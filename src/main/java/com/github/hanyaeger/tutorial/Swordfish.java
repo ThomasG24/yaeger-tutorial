@@ -14,7 +14,7 @@ public class Swordfish extends DynamicSpriteEntity implements SceneBorderCrossin
     }
 
     @Override
-    public void notifyBoundaryCrossing(SceneBorder Border) {
+    public void notifyBoundaryCrossing(SceneBorder border) {
         setAnchorLocationX(getWidth());
         setAnchorLocationY(new Random().nextInt((int) getSceneHeight()- 81));
     }

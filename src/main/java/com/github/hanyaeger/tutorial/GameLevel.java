@@ -18,5 +18,10 @@ public class GameLevel extends DynamicScene {
                 new Coordinate2D(getHeight() / 2, getWidth())
         );
         addEntity(swordfish);
+
+        Hanny hanny = new Hanny(
+                new Coordinate2D(getWidth() - 20, 0)
+        );
+        addEntity(hanny);
     }
 }

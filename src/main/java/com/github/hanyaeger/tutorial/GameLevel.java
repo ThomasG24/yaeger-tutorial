@@ -19,9 +19,16 @@ public class GameLevel extends DynamicScene {
         );
         addEntity(swordfish);
 
+        var healthText = new HealthText(
+                new Coordinate2D(0, 0)
+        );
+        addEntity(healthText);
+
         Hanny hanny = new Hanny(
-                new Coordinate2D(getWidth() - 20, 0)
+                new Coordinate2D(getWidth() - 20, 0), healthText
         );
         addEntity(hanny);
+
+
     }
 }

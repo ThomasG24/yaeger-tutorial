@@ -15,7 +15,7 @@ public class GameLevel extends DynamicScene {
     @Override
     public void setupEntities() {
         Swordfish swordfish = new Swordfish(
-                new Coordinate2D(getHeight() / 2, getWidth())
+                new Coordinate2D(getWidth(), getHeight() / 2)
         );
         addEntity(swordfish);
 

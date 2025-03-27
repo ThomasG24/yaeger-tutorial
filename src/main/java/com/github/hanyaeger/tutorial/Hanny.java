@@ -9,6 +9,8 @@ import com.github.hanyaeger.api.entities.SceneBorderTouchingWatcher;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.github.hanyaeger.api.userinput.KeyListener;
+import com.github.hanyaeger.tutorial.entities.swordfish.HitBox;
+import com.github.hanyaeger.tutorial.entities.swordfish.Swordfish;
 import javafx.scene.input.KeyCode;
 
 import java.util.List;
@@ -18,11 +20,14 @@ import java.util.Set;
 public class Hanny extends DynamicSpriteEntity implements KeyListener, SceneBorderTouchingWatcher, Newtonian, Collided {
     private HealthText healthText;
     private int health = 10;
+    private Waterworld waterworld;
 
-    public Hanny(Coordinate2D location, HealthText healthText) {
+    public Hanny(Coordinate2D location, HealthText healthText, Waterworld waterworld) {
         super("sprites/hanny.png", location, new Size(20, 40), 1, 2);
 
         this.healthText = healthText;
+        this.waterworld = waterworld;
+
         healthText.setHealthText(health);
 
         setGravityConstant(0.005);
@@ -72,13 +77,24 @@ public class Hanny extends DynamicSpriteEntity implements KeyListener, SceneBord
 
     @Override
     public void onCollision(List<Collider> colliderObject) {
-        setAnchorLocation(
-                new Coordinate2D(new Random().nextInt((int) (getSceneWidth()
-                        - getWidth())),
-                        new Random().nextInt((int) (getSceneHeight() - getHeight())))
-        );
 
-        health--;
-        healthText.setHealthText(health);
+        for (Collider collider : colliderObject) {
+            if (collider instanceof HitBox) {
+                health--;
+                healthText.setHealthText(health);
+            }
+            if (collider instanceof Sharky) {
+                health = health - 2;
+                healthText.setHealthText(health);
+            }
+        }
+
+        if (health <= 0) {
+            waterworld.setActiveScene(2);
+        }
+
+        setAnchorLocation(
+                new Coordinate2D(new Random().nextInt((int) (getSceneWidth() - getWidth())), new Random().nextInt((int) (getSceneHeight() - getHeight())))
+        );
     }
 }

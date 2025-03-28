@@ -1,8 +1,10 @@
 package com.github.hanyaeger.tutorial.entities.map;
 
+import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.scenes.TileMap;
 import com.github.hanyaeger.tutorial.Hanny;
 import com.github.hanyaeger.tutorial.HealthText;
+import com.github.hanyaeger.tutorial.entities.swordfish.Swordfish;
 
 public class CoralTileMap extends TileMap {
     @Override
